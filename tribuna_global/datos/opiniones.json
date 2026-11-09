@@ -187,6 +187,83 @@
       "razon": "El texto alaba la velocidad de Luis Díaz pero critica su tendencia a precipitarse en decisiones, lo cual es una valoración mixta.",
       "modelo": "qwen2.5:7b",
       "version_prompt": "1.1"
+    },
+    {
+      "id": "419e11fa-7455-405d-96f1-e59607e54f68",
+      "fecha_utc": "2026-11-09T04:18:43+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Su visión de juego es extraordinaria",
+      "sentimiento": "positivo",
+      "razon": "El texto alaba la visión de juego de Messi, lo cual es una valoración positiva.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
+    },
+    {
+      "id": "6ed1bbc1-1658-41b3-b2bb-2c0ce5984c3a",
+      "fecha_utc": "2026-11-09T04:19:28+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Su rendimiento fue decepcionante",
+      "sentimiento": "negativo",
+      "razon": "La opinión critica directamente el rendimiento de Messi, expresando decepción.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
+    },
+    {
+      "id": "35b21e7e-5c7b-47a3-bd04-a040928677e6",
+      "fecha_utc": "2026-11-09T04:19:52+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Es un jugador de fútbol",
+      "sentimiento": "neutro",
+      "razon": "La frase es descriptiva pero no contiene valoración sobre Lionel Messi.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
+    },
+    {
+      "id": "f9bfebdb-72cf-4fe9-807a-a528720abea0",
+      "fecha_utc": "2026-11-09T04:20:20+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Tiene gran técnica, pero su actitud me decepciona",
+      "sentimiento": "mixto",
+      "razon": "El texto combina un elogio sobre la técnica con una crítica sobre la actitud de Messi, lo que indica un sentimiento mixto.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
+    },
+    {
+      "id": "8f9e7a66-0045-475c-b56f-7c0b103c3aad",
+      "fecha_utc": "2026-11-09T04:20:51+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Tiene gran técnica, pero su actitud me decepciona",
+      "sentimiento": "mixto",
+      "razon": "El texto combina un elogio sobre la técnica con una crítica sobre la actitud, lo que indica un sentimiento mixto.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
+    },
+    {
+      "id": "1bee3bad-ed41-4414-ba64-0fcb69c54367",
+      "fecha_utc": "2026-11-09T04:21:26+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Qué precisión: falló todos los pases fáciles",
+      "sentimiento": "negativo",
+      "razon": "El texto contiene una crítica irónica sobre la precisión de Messi, que contradice lo que se describe.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
+    },
+    {
+      "id": "f3640a8a-9a5d-4747-8790-105b41251272",
+      "fecha_utc": "2026-11-09T04:24:20+00:00",
+      "jugador_id": "j013",
+      "jugador_nombre": "Luis Díaz",
+      "opinion_original": "Su velocidad desequilibra a cualquier defensa",
+      "sentimiento": "positivo",
+      "razon": "El texto alaba la velocidad de Luis Díaz, lo que desequilibra a las defensas oponentes.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
     }
   ]
 }
