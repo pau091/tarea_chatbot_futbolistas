@@ -286,6 +286,28 @@
       "razon": "La opinión se centra en el talento de Messi, describiendo su visión de juego como 'extraordinaria', lo cual es un elogio claro.",
       "modelo": "qwen2.5:7b",
       "version_prompt": "1.1"
+    },
+    {
+      "id": "bd441903-685d-48d6-8ba6-89334133c2a5",
+      "fecha_utc": "2026-11-09T13:11:50+00:00",
+      "jugador_id": "j012",
+      "jugador_nombre": "James Rodríguez",
+      "opinion_original": "Su zurda para los tiros libres es una maravilla",
+      "sentimiento": "positivo",
+      "razon": "El texto alaba la habilidad de James Rodríguez para ejecutar tiros libres con su zurda, lo cual es una valoración positiva de sus habilidades técnicas.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
+    },
+    {
+      "id": "97e69cc6-6be1-4787-94ac-f92fb7e48f15",
+      "fecha_utc": "2026-11-09T13:12:42+00:00",
+      "jugador_id": "j012",
+      "jugador_nombre": "James Rodríguez",
+      "opinion_original": "Sus pases filtrados y su pegada de media distancia son de otro nivel",
+      "sentimiento": "positivo",
+      "razon": "El texto alaba las habilidades técnicas de James Rodríguez sin mencionar críticas relevantes.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
     }
   ]
 }

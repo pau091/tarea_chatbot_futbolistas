@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import uuid
+from pathlib import Path
 
 import streamlit as st
 
@@ -18,6 +19,7 @@ from analisis import (
     validar_texto,
 )
 from almacenamiento import (
+    DIR_DATOS,
     RUTA_JUGADORES,
     RUTA_OPINIONES,
     SENTIMIENTOS,
@@ -31,11 +33,43 @@ from almacenamiento import (
     guardar_opinion,
 )
 
-st.set_page_config(page_title="Tribuna Global", page_icon="⚽", layout="wide")
+st.set_page_config(page_title="Tribuna Global", page_icon=":material/sports_soccer:", layout="wide")
 
-ICONOS = {"positivo": "🟢", "negativo": "🔴", "neutro": "⚪", "mixto": "🟡"}
+DIR_FOTOS = DIR_DATOS / "fotos"
+COLORES = {"positivo": "green", "negativo": "red", "neutro": "gray", "mixto": "orange"}
 SECCION_EMITIR = "Emitir opinión"
 SECCION_CONSULTAR = "Consultar opiniones"
+
+# Tipografía del título: Bebas Neue (Google Fonts), con Impact como respaldo sin conexión.
+st.markdown(
+    """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+    .tg-titulo {
+        font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+        font-size: 3.2rem !important;
+        line-height: 1;
+        letter-spacing: 0.06em;
+        margin: 0 0 0.2rem 0;
+    }
+    .tg-subtitulo {
+        font-size: 0.8rem !important;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        opacity: 0.6;
+        margin-bottom: 1rem;
+    }
+    .tg-jugador {
+        font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+        font-size: 2.6rem !important;
+        line-height: 1.05;
+        letter-spacing: 0.04em;
+        margin: 0;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -53,20 +87,78 @@ def obtener_cadena(_modelo: str):
     return construir_cadena()
 
 
-def agregar_mensaje(rol: str, contenido: str, jugador: str | None = None, tipo: str = "texto") -> None:
+# ---------------------------------------------------------------------------
+# Fotos de los jugadores (archivos locales descargados de Wikimedia Commons)
+# ---------------------------------------------------------------------------
+@st.cache_data(show_spinner=False)
+def cargar_creditos() -> dict:
+    try:
+        return json.loads((DIR_FOTOS / "creditos.json").read_text("utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}  # sin fotos la app sigue funcionando
+
+
+def ruta_foto(jugador_id: str | None) -> Path | None:
+    credito = cargar_creditos().get(jugador_id or "")
+    if credito and (DIR_FOTOS / credito["archivo"]).exists():
+        return DIR_FOTOS / credito["archivo"]
+    return None
+
+
+def texto_credito(jugador_id: str) -> str:
+    c = cargar_creditos().get(jugador_id, {})
+    autor = c.get("autor", "")
+    autor = autor if len(autor) <= 45 else autor[:42] + "..."
+    return f"Foto: {autor} · {c.get('licencia', '')} · Wikimedia Commons"
+
+
+def tarjeta_jugador(jugador: dict, ancho_foto: int = 150) -> None:
+    """Foto, nombre y país del jugador."""
+    foto = ruta_foto(jugador["id"])
+    col_foto, col_texto = st.columns([1, 4], vertical_alignment="center")
+    with col_foto:
+        if foto:
+            st.image(str(foto), width=ancho_foto)
+            st.caption(texto_credito(jugador["id"]))
+    with col_texto:
+        st.markdown(f'<div class="tg-jugador">{jugador["nombre"]}</div>', unsafe_allow_html=True)
+        st.write(jugador["pais"])
+
+
+# ---------------------------------------------------------------------------
+# Historial del chat
+# ---------------------------------------------------------------------------
+def agregar_mensaje(
+    rol: str,
+    contenido: str,
+    jugador: dict | None = None,
+    tipo: str = "texto",
+) -> None:
     st.session_state.mensajes.append(
-        {"rol": rol, "contenido": contenido, "jugador": jugador, "tipo": tipo}
+        {
+            "rol": rol,
+            "contenido": contenido,
+            "jugador": jugador["nombre"] if jugador else None,
+            "jugador_id": jugador["id"] if jugador else None,
+            "tipo": tipo,
+        }
     )
 
 
 def mostrar_mensaje(mensaje: dict) -> None:
-    with st.chat_message("user" if mensaje["rol"] == "user" else "assistant"):
-        if mensaje["rol"] == "user":
+    if mensaje["rol"] == "user":
+        foto = ruta_foto(mensaje.get("jugador_id"))
+        with st.chat_message("user", avatar=str(foto) if foto else None):
             st.caption(f"Opinión sobre **{mensaje['jugador']}**")
             st.markdown(mensaje["contenido"])
-            return
+        return
+    with st.chat_message("assistant"):
         mostrar = {"exito": st.success, "error": st.error, "aviso": st.warning, "info": st.info}
         mostrar.get(mensaje["tipo"], st.markdown)(mensaje["contenido"])
+
+
+def etiqueta_sentimiento(sentimiento: str) -> str:
+    return f":{COLORES[sentimiento]}[**Sentimiento: {sentimiento}**]"
 
 
 # ---------------------------------------------------------------------------
@@ -121,10 +213,7 @@ def procesar_envio(envio: dict) -> None:
             version_prompt=VERSION_PROMPT,
             registro_id=envio["envio_id"],
         )
-    resultado = (
-        f"{ICONOS[analisis.sentimiento]} **Sentimiento: {analisis.sentimiento}**\n\n"
-        f"{analisis.razon}"
-    )
+    resultado = f"{etiqueta_sentimiento(analisis.sentimiento)}\n\n{analisis.razon}"
     try:
         escrito = guardar_opinion(RUTA_OPINIONES, envio["registro"])
     except ErrorAlmacenamiento as exc:
@@ -137,7 +226,7 @@ def procesar_envio(envio: dict) -> None:
         st.session_state.pendiente = envio
         return
 
-    nota = "✅ Opinión guardada." if escrito else "ℹ️ Este envío ya estaba guardado; no se duplicó."
+    nota = "**Opinión guardada.**" if escrito else "Este envío ya estaba guardado; no se duplicó."
     agregar_mensaje("assistant", f"{resultado}\n\n{nota}", tipo="exito")
     st.session_state.pendiente = None
 
@@ -157,7 +246,11 @@ por_id = {j["id"]: j for j in jugadores}
 # Barra lateral
 # ---------------------------------------------------------------------------
 with st.sidebar:
-    st.title("⚽ Tribuna Global")
+    st.markdown(
+        '<div class="tg-titulo">Tribuna Global</div>'
+        '<div class="tg-subtitulo">La voz de la afición</div>',
+        unsafe_allow_html=True,
+    )
     seccion = st.radio("Sección", [SECCION_EMITIR, SECCION_CONSULTAR])
     st.selectbox(
         "Jugador",
@@ -165,7 +258,7 @@ with st.sidebar:
         format_func=lambda jid: f"{por_id[jid]['nombre']} ({por_id[jid]['pais']})",
         key="jugador_id",
     )
-    if st.button("🧹 Nueva conversación", width="stretch"):
+    if st.button("Nueva conversación", width="stretch"):
         st.session_state.mensajes = []
         st.session_state.pendiente = None
         st.rerun()  # solo limpia la sesión; opiniones.json no se modifica
@@ -182,10 +275,8 @@ with st.sidebar:
 if seccion == SECCION_EMITIR:
     jugador_actual = por_id[st.session_state.jugador_id]
     st.header("Emitir opinión")
-    st.write(
-        f"Jugador seleccionado: **{jugador_actual['nombre']}** ({jugador_actual['pais']}). "
-        "Cada mensaje se analiza de forma independiente."
-    )
+    tarjeta_jugador(jugador_actual)
+    st.caption("Cada mensaje se analiza de forma independiente.")
 
     for mensaje in st.session_state.mensajes:
         mostrar_mensaje(mensaje)
@@ -196,7 +287,7 @@ if seccion == SECCION_EMITIR:
             f"Envío pendiente para **{pendiente['jugador']['nombre']}**: «{pendiente['texto'].strip()}»"
         )
         col1, col2 = st.columns(2)
-        if col1.button("🔁 Reintentar", width="stretch"):
+        if col1.button("Reintentar", width="stretch"):
             procesar_envio(pendiente)
             st.rerun()
         if col2.button("Descartar", width="stretch"):
@@ -213,7 +304,7 @@ if seccion == SECCION_EMITIR:
             "analisis": None,
             "registro": None,
         }
-        agregar_mensaje("user", texto.strip() or "(mensaje vacío)", jugador=jugador_actual["nombre"])
+        agregar_mensaje("user", texto.strip() or "(mensaje vacío)", jugador=jugador_actual)
         procesar_envio(envio)
         st.rerun()
 
@@ -244,8 +335,11 @@ else:
     filtro_sentimiento = col2.selectbox(
         "Sentimiento",
         options=[None, *SENTIMIENTOS],
-        format_func=lambda s: "Todos" if s is None else f"{ICONOS[s]} {s}",
+        format_func=lambda s: "Todos" if s is None else s.capitalize(),
     )
+
+    if filtro_jugador in por_id:
+        tarjeta_jugador(por_id[filtro_jugador], ancho_foto=110)
 
     filtrados = consultar_opiniones(registros, filtro_jugador, filtro_sentimiento)
     filtrados = sorted(filtrados, key=lambda r: r["fecha_utc"], reverse=True)
@@ -254,7 +348,7 @@ else:
     metricas = st.columns(5)
     metricas[0].metric("Total filtrado", len(filtrados))
     for col, s in zip(metricas[1:], SENTIMIENTOS):
-        col.metric(f"{ICONOS[s]} {s.capitalize()}", conteo[s])
+        col.metric(s.capitalize(), conteo[s])
 
     if not filtrados:
         st.info("No hay opiniones que coincidan con los filtros seleccionados.")
@@ -265,7 +359,7 @@ else:
                     "Fecha (UTC)": r["fecha_utc"],
                     "Jugador": r["jugador_nombre"],
                     "Opinión original": r["opinion_original"],
-                    "Sentimiento": f"{ICONOS.get(r['sentimiento'], '')} {r['sentimiento']}",
+                    "Sentimiento": r["sentimiento"],
                     "Razón": r["razon"],
                 }
                 for r in filtrados
@@ -282,7 +376,7 @@ else:
         "opiniones": filtrados,
     }
     st.download_button(
-        "⬇️ Descargar resultados (JSON)",
+        "Descargar resultados (JSON)",
         data=json.dumps(exportacion, ensure_ascii=False, indent=2).encode("utf-8"),
         file_name="opiniones_filtradas.json",
         mime="application/json",
