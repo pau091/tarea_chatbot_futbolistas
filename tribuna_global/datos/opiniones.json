@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "opiniones": [
+    {
+      "id": "ebd28726-2ee2-4fa2-ad27-f0282574f8c0",
+      "fecha_utc": "2026-11-06T15:00:00+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Su visión de juego y sus pases son extraordinarios",
+      "sentimiento": "positivo",
+      "razon": "La opinión expresa admiración por su visión de juego y la calidad de sus pases.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "7060a2ea-6b92-46cd-8c62-8baa0aa88a11",
+      "fecha_utc": "2026-11-06T15:07:00+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "En las finales importantes se escondía y no aparecía",
+      "sentimiento": "negativo",
+      "razon": "La opinión critica su rendimiento en partidos decisivos.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "38abd39e-ad36-457e-9393-b88f56814149",
+      "fecha_utc": "2026-11-06T15:14:00+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Juega como extremo derecho y es zurdo",
+      "sentimiento": "neutro",
+      "razon": "La opinión describe su posición y su perfil sin emitir una valoración.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "559178d3-85ba-4420-b8b9-6b17d722db1f",
+      "fecha_utc": "2026-11-06T15:21:00+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Es un genio con el balón, pero a veces camina demasiado en la cancha",
+      "sentimiento": "mixto",
+      "razon": "La opinión elogia su talento con el balón y critica su falta de intensidad.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "c1cedfbb-a087-4678-ae9f-166270f01a2d",
+      "fecha_utc": "2026-11-06T15:28:00+00:00",
+      "jugador_id": "j013",
+      "jugador_nombre": "Luis Díaz",
+      "opinion_original": "Su velocidad y su regate desequilibran a cualquier defensa",
+      "sentimiento": "positivo",
+      "razon": "La opinión destaca con admiración su velocidad y su regate.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "d23e7f58-c7fb-498e-a13a-4505e825d24c",
+      "fecha_utc": "2026-11-06T15:35:00+00:00",
+      "jugador_id": "j013",
+      "jugador_nombre": "Luis Díaz",
+      "opinion_original": "Su rendimiento en el último partido fue decepcionante",
+      "sentimiento": "negativo",
+      "razon": "La opinión expresa decepción por su rendimiento reciente.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "95371232-195d-4513-9006-313d567e4360",
+      "fecha_utc": "2026-11-06T15:42:00+00:00",
+      "jugador_id": "j013",
+      "jugador_nombre": "Luis Díaz",
+      "opinion_original": "Es un delantero colombiano que juega por la banda izquierda",
+      "sentimiento": "neutro",
+      "razon": "La opinión describe su nacionalidad y posición sin valorarlo.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "62073bcf-5f19-45b6-a805-1fcf23cd08f6",
+      "fecha_utc": "2026-11-06T15:49:00+00:00",
+      "jugador_id": "j013",
+      "jugador_nombre": "Luis Díaz",
+      "opinion_original": "Desborda muy bien, aunque define mal frente al arco",
+      "sentimiento": "mixto",
+      "razon": "La opinión elogia su desborde y critica su definición.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "12519ee5-a6b7-4860-aee9-000021429e13",
+      "fecha_utc": "2026-11-06T15:56:00+00:00",
+      "jugador_id": "j009",
+      "jugador_nombre": "Luka Modrić",
+      "opinion_original": "Su control del ritmo del partido es una lección de fútbol",
+      "sentimiento": "positivo",
+      "razon": "La opinión expresa admiración por su capacidad para controlar el ritmo del juego.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "cd3129f1-4e52-4905-90ab-3b3d13be4717",
+      "fecha_utc": "2026-11-06T16:03:00+00:00",
+      "jugador_id": "j009",
+      "jugador_nombre": "Luka Modrić",
+      "opinion_original": "Qué gran marca: dejó correr a su rival todo el partido",
+      "sentimiento": "negativo",
+      "razon": "La opinión usa un tono irónico para criticar su marca defensiva.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "1c077e5b-0294-4a9d-8cc6-a848826764cf",
+      "fecha_utc": "2026-11-06T16:10:00+00:00",
+      "jugador_id": "j009",
+      "jugador_nombre": "Luka Modrić",
+      "opinion_original": "Es un mediocampista croata",
+      "sentimiento": "neutro",
+      "razon": "La opinión describe su posición y nacionalidad sin carga valorativa.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "29d87532-9449-4db0-af40-f1a6a9f9e577",
+      "fecha_utc": "2026-11-06T16:17:00+00:00",
+      "jugador_id": "j009",
+      "jugador_nombre": "Luka Modrić",
+      "opinion_original": "Tiene una técnica exquisita, pero ya le falta ritmo físico",
+      "sentimiento": "mixto",
+      "razon": "La opinión elogia su técnica y critica su estado físico.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "d87c882a-bd47-46c7-9eb3-2fa52e5e790f",
+      "fecha_utc": "2026-11-06T16:24:00+00:00",
+      "jugador_id": "j019",
+      "jugador_nombre": "Ronaldinho",
+      "opinion_original": "Hacía que el fútbol pareciera un juego de alegría pura",
+      "sentimiento": "positivo",
+      "razon": "La opinión expresa admiración por el estilo alegre de su juego.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "484a5afa-bf62-4aca-b135-0b59b0fc29f1",
+      "fecha_utc": "2026-11-06T16:31:00+00:00",
+      "jugador_id": "j019",
+      "jugador_nombre": "Ronaldinho",
+      "opinion_original": "Desperdició su talento por falta de disciplina",
+      "sentimiento": "negativo",
+      "razon": "La opinión critica su falta de disciplina y el aprovechamiento de su talento.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "ea21faf1-b9c6-4fe7-b275-b952cb61fc37",
+      "fecha_utc": "2026-11-06T16:38:00+00:00",
+      "jugador_id": "j019",
+      "jugador_nombre": "Ronaldinho",
+      "opinion_original": "Jugó como mediapunta y usaba el número 10",
+      "sentimiento": "neutro",
+      "razon": "La opinión describe su posición y dorsal sin valorarlo.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "297a9b77-00cf-41aa-8673-74df94596bab",
+      "fecha_utc": "2026-11-06T16:45:00+00:00",
+      "jugador_id": "j019",
+      "jugador_nombre": "Ronaldinho",
+      "opinion_original": "Sus regates eran mágicos, pero su carrera en la élite fue corta",
+      "sentimiento": "mixto",
+      "razon": "La opinión elogia sus regates y lamenta la brevedad de su carrera en la élite.",
+      "modelo": "registro_ficticio",
+      "version_prompt": "1.0"
+    },
+    {
+      "id": "5ae02580-6bb9-48a6-a59a-416538228ce4",
+      "fecha_utc": "2026-11-09T03:22:57+00:00",
+      "jugador_id": "j013",
+      "jugador_nombre": "Luis Díaz",
+      "opinion_original": "Su velocidad por la banda es impresionante, aunque a veces se precipita al definir",
+      "sentimiento": "mixto",
+      "razon": "El texto alaba la velocidad de Luis Díaz pero critica su tendencia a precipitarse en decisiones, lo cual es una valoración mixta.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
+    }
+  ]
+}
