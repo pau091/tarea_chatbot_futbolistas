@@ -264,6 +264,28 @@
       "razon": "El texto alaba la velocidad de Luis Díaz, lo que desequilibra a las defensas oponentes.",
       "modelo": "qwen2.5:7b",
       "version_prompt": "1.1"
+    },
+    {
+      "id": "07eefb28-ad47-4fb6-92e1-092bd9ac8db5",
+      "fecha_utc": "2026-11-09T12:49:44+00:00",
+      "jugador_id": "j013",
+      "jugador_nombre": "Luis Díaz",
+      "opinion_original": "Su regate en espacios cortos es admirable y siempre busca el arco",
+      "sentimiento": "positivo",
+      "razon": "El texto alaba las habilidades de regate y el esfuerzo por marcar goles del jugador, sin mencionar críticas.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
+    },
+    {
+      "id": "e415c410-5b5e-4852-80b8-aee70df74e9b",
+      "fecha_utc": "2026-11-09T12:50:06+00:00",
+      "jugador_id": "j001",
+      "jugador_nombre": "Lionel Messi",
+      "opinion_original": "Su visión de juego es extraordinaria",
+      "sentimiento": "positivo",
+      "razon": "La opinión se centra en el talento de Messi, describiendo su visión de juego como 'extraordinaria', lo cual es un elogio claro.",
+      "modelo": "qwen2.5:7b",
+      "version_prompt": "1.1"
     }
   ]
 }
